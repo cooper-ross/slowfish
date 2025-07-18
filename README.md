@@ -11,6 +11,14 @@ A C++ chess engine that supports the Universal Chess Interface (UCI) protocol. T
 - **Search Algorithm**: It uses alpha-beta pruning with quiescence search, PV scoring, killer/history heuristics, null move pruning, and heuristic move ordering. If you're interested, there's a great series of videos on these types of techniques by Sebastian Lague!
 - **All One File**: The entire engine is contained in a single file, making it easy to compile and run, and to integrate into other projects or use with UCI-compatible chess GUIs. Though honestly, I just felt too lazy to organize it.
 
+## Notes
+
+The point of this entire engine was to improve my personal engine record, which I am happy to say I did! My old chess engine could search around 2000 nodes per second, which is terrible by modern chess computing standards. 
+
+As a comparison, IBM's Deep Blue Supercomputer could evaluate around [700k nodes per second](https://web.archive.org/web/20081208081052/http://www.research.ibm.com/deepblue/watch/html/game1.log) during it's bout against Kasparov in 1997. At the start of the game, it took around 208 seconds to evaluate 137 million nodes. My chess engine, when comparing with a similar time metric of 141 seconds, evaluated nearly 600 million nodes at a speed of around 4 million nodes per second. That's over 4 times the speed of the chess engine that bested Kasparov.
+
+That said, most modern engines (such as Stockfish, where my engine derives its name) can easily crush my engine any day of the weak. Where mine might take nearly 30 minutes for a depth of 15 (it scales pretty badly) stockfish can do it in 10ms. So there's certainly room to improve!
+
 ## UCI Interface
 
 The engine supports the Universal Chess Interface (UCI) protocol, allowing it to work with any UCI-compatible chess GUI or interface.
@@ -74,16 +82,20 @@ readyok
 position startpos
 
 go movetime 1000
-info depth 1 score cp 30 nodes 21 nps 0 time 0 pv d2d4
-info depth 2 score cp 0 nodes 89 nps 0 time 0 pv d2d4 d7d5
-info depth 3 score cp 25 nodes 637 nps 637000 time 1 pv d2d4 d7d5 c1e3
-info depth 4 score cp 0 nodes 3834 nps 1917000 time 2 pv d2d4 d7d5 c1e3 c8e6
-info depth 5 score cp 25 nodes 11867 nps 2966750 time 4 pv e2e4 e7e5 d2d4 d7d5 c1e3
-info depth 6 score cp 5 nodes 81217 nps 3384041 time 6 pv e2e4 e7e5 d2d4 b8c6 g1f3 f8d6
-info depth 7 score cp 22 nodes 247051 nps 3743196 time 21 pv e2e4 d7d5 e4d5 d8d5 d2d4 e7e5 c1e3
-info depth 8 score cp 5 nodes 2286791 nps 3786077 time 64 pv e2e4 e7e5 g1f3 g8f6 b1c3 b8c6 d2d4
-info depth 9 score cp 22 nodes 5660667 nps 3952979 time 206 pv e2e4
-info depth 10 score cp 12 nodes 41294543 nps 3909727 time 992 pv e2e4
+info depth 1 score cp 30 nodes 21 nps 0 time 0 pv e2e4
+info depth 2 score cp 0 nodes 88 nps 0 time 0 pv e2e4 e7e5
+info depth 3 score cp 25 nodes 674 nps 0 time 0 pv e2e4 d7d5 f1d3
+info depth 4 score cp 0 nodes 3473 nps 3473000 time 1 pv e2e4 e7e5
+info depth 5 score cp 25 nodes 8439 nps 2813000 time 3 pv e2e4 e7e5 d2d4 d7d5 c1e3
+info depth 6 score cp 5 nodes 82074 nps 3568434 time 23 pv e2e4 e7e5 d2d4 b8c6 g1f3 f8d6
+info depth 7 score cp 22 nodes 296772 nps 3956960 time 75 pv e2e4 d7d5 e4d5 d8d5 d2d4 e7e5 c1e3
+info depth 8 score cp 5 nodes 2478674 nps 3744220 time 662 pv e2e4
+info depth 9 score cp 22 nodes 5568379 nps 3877701 time 1436 pv e2e4 e7e6 d2d4 d7d5 b1c3 d5e4 c3e4 f8b4
+info depth 10 score cp 12 nodes 48772131 nps 3960384 time 12315 pv e2e4
+info depth 11 score cp 20 nodes 82102005 nps 3994259 time 20555 pv e2e4
+info depth 12 score cp 10 nodes 576256706 nps 4070299 time 141576 pv e2e4
+info depth 13 score cp 17 nodes 1189504554 nps 4086689 time 291068 pv e2e4
+info depth 14 score cp 10 nodes 6902784793 nps 4114749 time 1677571 pv e2e4
 bestmove e2e4
 
 quit
